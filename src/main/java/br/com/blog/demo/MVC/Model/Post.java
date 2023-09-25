@@ -1,9 +1,6 @@
 package br.com.blog.demo.MVC.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Post {
@@ -13,14 +10,17 @@ public class Post {
     String URLImage;
     String Titulo;
     String texto;
+    @ManyToOne
+    Categoria categoria;
 
     public Post(){
     }
 
-    public Post(String URLImage, String titulo, String texto) {
+    public Post(String URLImage, String titulo, String texto, Categoria categoria) {
         this.URLImage = URLImage;
         this.Titulo = titulo;
         this.texto = texto;
+        this.categoria = categoria;
     }
 
     public int getId() {
@@ -53,5 +53,13 @@ public class Post {
 
     public void setTexto(String texto) {
         this.texto = texto;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 }
